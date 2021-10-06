@@ -34,20 +34,14 @@ const App = () => {
   // function to calculate the BMI
   const calculateBMI = () => {
     if (weight > 0 && height > 0) {
-      let heightFixed = height;
-      let weightFiexd = weight;
+      let BMI;
 
       if (type === 'metric') {
-        // convert INCS to CM
-        heightFixed = (1 * height) / 0.393701;
-        // conver lbs to KG
-        weightFiexd = (1 * weight) / 2.20462;
+        BMI = ((weight / (height * height)) * 730).toFixed(2);
+      } else {
+        // Fixing upto 2 decimal places
+        BMI = (weight / ((height * height) / 10000)).toFixed(2);
       }
-
-      // Fixing upto 2 decimal places
-      let BMI = (weightFiexd / ((heightFixed * heightFixed) / 10000)).toFixed(
-        2,
-      );
 
       // Dividing as per the bmi conditions
       if (BMI < 18.6) setBMI(`Under Weight : ${BMI}`);
